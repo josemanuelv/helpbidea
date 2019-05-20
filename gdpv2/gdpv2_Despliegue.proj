@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- -->
+  <!-- ********************************************* -->
+  <!-- ********************************************* -->
+  <!-- *    Plantilla despliegue MSBuild  v2.0     * -->
+  <!-- ********************************************* -->
+  <!-- ********************************************* -->
+
+  	<!-- ** Se recomienda leer todos los comentarios antes de modificar esta plantilla ** -->
+  	<!-- - Los elementos entre [CORCHETES] deben ser introducidos manualmente -->
+	
+	<PropertyGroup>
+		<!-- * INICIO PRODUCTO * -->
+		<!-- Valores posibles Producto: debe coincidir con el valor asignado al JOB DE JENKINS en el script de compilación -->
+		<Producto>gdpv2</Producto>
+		<!-- Valores posibles Producto_Version_CLR: v2.0.50727 | v4.0.30319 -->
+		<Producto_Version_CLR>v4.0.30319</Producto_Version_CLR>
+		<!-- Valores posibles Producto_Unidad: ssid | ssic | ssias | ticna | etc. -->
+		<Producto_Unidad>ticna</Producto_Unidad>
+		<!-- Valores posibles Servidor_Integracion (Windows 2003 | Windows 2012): CENTPDI05 | CENTPDI04ND01 -->
+		<Servidor_Integracion>CENTPDI04ND01</Servidor_Integracion>
+		<!-- Si queremos ver informacion sobre depuracion como, rutas, herramientas usadas, paths, etc -->
+		<!-- Valores posibles Incluir_Informacion_Depuracion: True | False -->
+		<Incluir_Informacion_Depuracion>True</Incluir_Informacion_Depuracion>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+		<!-- Repetir para cada componente desplegable en IIS que tengamos
+			 Si no tenemos componentes en IIS puede eliminarse 
+	    -->
+		<IISComponent Include="gdpv2">
+			<Pagina_Por_Defecto>Inicio.html</Pagina_Por_Defecto>
+			<!-- Ruta relativa al componente dentro de la carpeta Fuentes -->
+			<Ruta_Relativa_Fisica>gdpv2</Ruta_Relativa_Fisica>
+			<Nombre_Pool>gdpv2Pool</Nombre_Pool>
+			<!-- Los valores admitidos en GesValidacion para sslFlags se listan a continuacion:
+				- "None": deshabilitar SSL.
+				- "Ssl": requerir SSL.
+				- "SslNegotiateCert": aceptar autenticación mediante certificados de cliente. 
+				- "SslRequireCert": requerir autenticación mediante certificados de cliente.
+				- "Ssl128": requerir SSL 128
+				Los valores pueden combinarse con el literal ","
+				Para requerir por ejemplo SSL y aceptar autenticacion mediante certificados de cliente usariamos el literal "Ssl,SslNegociateCert"
+				Para combinar valores, no dejar espacio entre los elementos y la coma
+				Algunos valores no pueden combinarse entre si, como SslNegotiateCert y SslRequireCert
+			-->
+			<Ssl>None</Ssl>
+			<!-- Valores posibles TipoServidor: Frontal | Backend | Informes -->		
+			<Tipo_Servidor>Frontal</Tipo_Servidor>
+			<!-- Valores posibles Modo: True | False -->
+			<Enable32Bits>False</Enable32Bits>
+			<!-- Valores posibles Modo: Classic | Integrated -->
+			<Modo_Canalizacion>Integrated</Modo_Canalizacion>
+			<!-- Metodos de Autrenticacion posibles: Anonymous | Basic | Digest | Windows -->
+			<Autenticacion>Anonymous</Autenticacion>
+		</IISComponent>
+
+		
+	</ItemGroup>	
+
+	<!-- - NO BORRAR NUNCA ESTE TARGET. Si no necesitamos acciones PreBuild, dejar vacio -->
+	<Target Name="Acciones_PreBuild">
+	</Target>
+		
+	<!-- - NO BORRAR NUNCA ESTE TARGET. Si no necesitamos acciones PostBuild, dejar vacio -->
+	<Target Name="Acciones_PostBuild">
+	</Target>
+
+</Project>
+
+
+
+
+
+
+
+

@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="gdpv2.Servicios.ServicioGDPv2Propio" CodeBehind="ServicioGDPv2Propio.svc.cs" %>

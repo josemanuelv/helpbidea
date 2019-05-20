@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.tracasa.es/Schemas/GDP/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.tracasa.es/Schemas/GDP/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.tracasa.es/Schemas/GDP/">
+      <s:element name="EntidadesSingulares">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pPatron" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pIdioma" type="tns:Idioma" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="Idioma">
+        <s:restriction base="s:string">
+          <s:enumeration value="Castellano" />
+          <s:enumeration value="Euskera" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="EntidadesSingularesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EntidadesSingularesResult" type="tns:GDPClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GDPClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Municipio" type="tns:Municipio" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EntidadSingular" type="tns:EntidadSingular" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Via" type="tns:Via" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="NumPostal" type="tns:NumPostal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Municipio">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CodMun" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="DenomMun" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EntidadSingular">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CodEntSing" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodMun" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodEntINE" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="DenomEntSing" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Via">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CodVia" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodEntSing" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="DenomVia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tipo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodINE" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DenomViaAbreviada" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DenomViaSimple" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NumPostal">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CodVia" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodPortal" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Numero" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NomCasa" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodPostal" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Poligono" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="Parcela" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="X" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Y" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EntidadesSingularesMuni">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pCodMun" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="pPatron" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pIdioma" type="tns:Idioma" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EntidadesSingularesMuniResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EntidadesSingularesMuniResult" type="tns:GDPClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Municipios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pPatron" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pIdioma" type="tns:Idioma" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MunicipiosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MunicipiosResult" type="tns:GDPClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Postal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pCodVia" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pNumero" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pIdioma" type="tns:Idioma" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PostalResult" type="tns:GDPClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostalCodPortal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pCodPortal" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pIdioma" type="tns:Idioma" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostalCodPortalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PostalCodPortalResult" type="tns:GDPClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Postales">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pCodVia" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pNumero" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pIdioma" type="tns:Idioma" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostalesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PostalesResult" type="tns:GDPClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostalesEntidadNombreCasa">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pCodEntSing" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pNomCasa" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pIdioma" type="tns:Idioma" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostalesEntidadNombreCasaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PostalesEntidadNombreCasaResult" type="tns:GDPClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostalesNombreEntidadSingular">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pCodEntSing" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pVia" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pNumero" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pIdioma" type="tns:Idioma" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostalesNombreEntidadSingularResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PostalesNombreEntidadSingularResult" type="tns:GDPClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostalesNombreLocalidad">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pLocalidad" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pVia" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pNumero" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pIdioma" type="tns:Idioma" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostalesNombreLocalidadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PostalesNombreLocalidadResult" type="tns:GDPClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostalesViaNombreCasa">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pCodVia" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pNomCasa" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pIdioma" type="tns:Idioma" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostalesViaNombreCasaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PostalesViaNombreCasaResult" type="tns:GDPClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Via">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pCodVia" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pIdioma" type="tns:Idioma" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ViaResult" type="tns:GDPClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViasEntidadSingular">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pCodEntSing" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pPatron" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pIdioma" type="tns:Idioma" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViasEntidadSingularResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ViasEntidadSingularResult" type="tns:GDPClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViasLocalidad">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pLocalidad" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pPatron" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pIdioma" type="tns:Idioma" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViasLocalidadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ViasLocalidadResult" type="tns:GDPClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViasMunicipios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pCodMun" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="pPatron" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pIdioma" type="tns:Idioma" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViasMunicipiosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ViasMunicipiosResult" type="tns:GDPClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViasNombreViaEntSingular">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pCodEntSing" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pVia" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pIdioma" type="tns:Idioma" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViasNombreViaEntSingularResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ViasNombreViaEntSingularResult" type="tns:GDPClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViasNombreViaLocalidad">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pLocalidad" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pVia" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pIdioma" type="tns:Idioma" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViasNombreViaLocalidadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ViasNombreViaLocalidadResult" type="tns:GDPClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="EntidadesSingularesSoapIn">
+    <wsdl:part name="parameters" element="tns:EntidadesSingulares" />
+  </wsdl:message>
+  <wsdl:message name="EntidadesSingularesSoapOut">
+    <wsdl:part name="parameters" element="tns:EntidadesSingularesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EntidadesSingularesMuniSoapIn">
+    <wsdl:part name="parameters" element="tns:EntidadesSingularesMuni" />
+  </wsdl:message>
+  <wsdl:message name="EntidadesSingularesMuniSoapOut">
+    <wsdl:part name="parameters" element="tns:EntidadesSingularesMuniResponse" />
+  </wsdl:message>
+  <wsdl:message name="MunicipiosSoapIn">
+    <wsdl:part name="parameters" element="tns:Municipios" />
+  </wsdl:message>
+  <wsdl:message name="MunicipiosSoapOut">
+    <wsdl:part name="parameters" element="tns:MunicipiosResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostalSoapIn">
+    <wsdl:part name="parameters" element="tns:Postal" />
+  </wsdl:message>
+  <wsdl:message name="PostalSoapOut">
+    <wsdl:part name="parameters" element="tns:PostalResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostalCodPortalSoapIn">
+    <wsdl:part name="parameters" element="tns:PostalCodPortal" />
+  </wsdl:message>
+  <wsdl:message name="PostalCodPortalSoapOut">
+    <wsdl:part name="parameters" element="tns:PostalCodPortalResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostalesSoapIn">
+    <wsdl:part name="parameters" element="tns:Postales" />
+  </wsdl:message>
+  <wsdl:message name="PostalesSoapOut">
+    <wsdl:part name="parameters" element="tns:PostalesResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostalesEntidadNombreCasaSoapIn">
+    <wsdl:part name="parameters" element="tns:PostalesEntidadNombreCasa" />
+  </wsdl:message>
+  <wsdl:message name="PostalesEntidadNombreCasaSoapOut">
+    <wsdl:part name="parameters" element="tns:PostalesEntidadNombreCasaResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostalesNombreEntidadSingularSoapIn">
+    <wsdl:part name="parameters" element="tns:PostalesNombreEntidadSingular" />
+  </wsdl:message>
+  <wsdl:message name="PostalesNombreEntidadSingularSoapOut">
+    <wsdl:part name="parameters" element="tns:PostalesNombreEntidadSingularResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostalesNombreLocalidadSoapIn">
+    <wsdl:part name="parameters" element="tns:PostalesNombreLocalidad" />
+  </wsdl:message>
+  <wsdl:message name="PostalesNombreLocalidadSoapOut">
+    <wsdl:part name="parameters" element="tns:PostalesNombreLocalidadResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostalesViaNombreCasaSoapIn">
+    <wsdl:part name="parameters" element="tns:PostalesViaNombreCasa" />
+  </wsdl:message>
+  <wsdl:message name="PostalesViaNombreCasaSoapOut">
+    <wsdl:part name="parameters" element="tns:PostalesViaNombreCasaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ViaSoapIn">
+    <wsdl:part name="parameters" element="tns:Via" />
+  </wsdl:message>
+  <wsdl:message name="ViaSoapOut">
+    <wsdl:part name="parameters" element="tns:ViaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ViasEntidadSingularSoapIn">
+    <wsdl:part name="parameters" element="tns:ViasEntidadSingular" />
+  </wsdl:message>
+  <wsdl:message name="ViasEntidadSingularSoapOut">
+    <wsdl:part name="parameters" element="tns:ViasEntidadSingularResponse" />
+  </wsdl:message>
+  <wsdl:message name="ViasLocalidadSoapIn">
+    <wsdl:part name="parameters" element="tns:ViasLocalidad" />
+  </wsdl:message>
+  <wsdl:message name="ViasLocalidadSoapOut">
+    <wsdl:part name="parameters" element="tns:ViasLocalidadResponse" />
+  </wsdl:message>
+  <wsdl:message name="ViasMunicipiosSoapIn">
+    <wsdl:part name="parameters" element="tns:ViasMunicipios" />
+  </wsdl:message>
+  <wsdl:message name="ViasMunicipiosSoapOut">
+    <wsdl:part name="parameters" element="tns:ViasMunicipiosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ViasNombreViaEntSingularSoapIn">
+    <wsdl:part name="parameters" element="tns:ViasNombreViaEntSingular" />
+  </wsdl:message>
+  <wsdl:message name="ViasNombreViaEntSingularSoapOut">
+    <wsdl:part name="parameters" element="tns:ViasNombreViaEntSingularResponse" />
+  </wsdl:message>
+  <wsdl:message name="ViasNombreViaLocalidadSoapIn">
+    <wsdl:part name="parameters" element="tns:ViasNombreViaLocalidad" />
+  </wsdl:message>
+  <wsdl:message name="ViasNombreViaLocalidadSoapOut">
+    <wsdl:part name="parameters" element="tns:ViasNombreViaLocalidadResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AlfaWSSoap">
+    <wsdl:operation name="EntidadesSingulares">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite obtener la lista de entidades singulares de Navarra según el nomenclátor oficial,
+			indicando un patrón de búsqueda aplicable al nombre de la entidad singular.
+			Si se introduce como patrón la cadena vacía se obtendrá la lista completa de entidades.</wsdl:documentation>
+      <wsdl:input message="tns:EntidadesSingularesSoapIn" />
+      <wsdl:output message="tns:EntidadesSingularesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EntidadesSingularesMuni">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite obtener la lista de entidades singulares de Navarra según el nomenclátor oficial,
+			indicando además del municipio un patrón de búsqueda aplicable al nombre de la entidad
+			singular. Si se introduce como patrón la cadena vacía se obtendrá la lista completa.</wsdl:documentation>
+      <wsdl:input message="tns:EntidadesSingularesMuniSoapIn" />
+      <wsdl:output message="tns:EntidadesSingularesMuniSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Municipios">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite obtener la lista de municipios de Navarra según el nomenclátor oficial. Se obtienen
+			los municipios cuyo nombre cumpla un patrón de búsqueda determinado. Si se introduce
+			como patrón la cadena vacía se obtendrá la lista completa.</wsdl:documentation>
+      <wsdl:input message="tns:MunicipiosSoapIn" />
+      <wsdl:output message="tns:MunicipiosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Postal">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite obtener la información correspondiente a un número postal del
+			DDP a partir del identificador de vía y el número postal (pe: Si se solicita el número
+			12 y aunque en la vía existen los números 12 y 12-BIS, sólo se devolverá 12, es decir,
+			el que cumple exactamente el criterio de búsqueda).</wsdl:documentation>
+      <wsdl:input message="tns:PostalSoapIn" />
+      <wsdl:output message="tns:PostalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostalCodPortal">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite obtener el número postal a partir de su código de portal.</wsdl:documentation>
+      <wsdl:input message="tns:PostalCodPortalSoapIn" />
+      <wsdl:output message="tns:PostalCodPortalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Postales">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite obtener una lista de números postales (direcciones postales horizontales) de una vía
+			que sean iguales o contengan en alguna de sus partes el número solicitado (pe: Si se solicita
+			el número 12 y en la vía existen los números 12 y 12-BIS, se devolverán los dos). Si se
+			introduce como número postal la cadena vacía se obtendrá la lista completa.</wsdl:documentation>
+      <wsdl:input message="tns:PostalesSoapIn" />
+      <wsdl:output message="tns:PostalesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostalesEntidadNombreCasa">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite obtener una lista de los números postales de la entidad singular
+              cuyo nombre de casa cumpla el patrón proporcionado.</wsdl:documentation>
+      <wsdl:input message="tns:PostalesEntidadNombreCasaSoapIn" />
+      <wsdl:output message="tns:PostalesEntidadNombreCasaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostalesNombreEntidadSingular">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite obtener una lista de los números postales que sean iguales o contengan en alguna
+			de sus partes el número solicitado (pe: Si se solicita el número 12 y en la vía existen los
+			números 12 y 12-BIS, se devolverán los dos) de aquellas vías de una entidad singular
+			obtenidas mediante una comparación de igualdad con el nombre de la vía, quedando la
+			entidad singular determinada mediante códigos.
+			Si se introduce como número postal la cadena vacía se obtendrá la lista completa.</wsdl:documentation>
+      <wsdl:input message="tns:PostalesNombreEntidadSingularSoapIn" />
+      <wsdl:output message="tns:PostalesNombreEntidadSingularSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostalesNombreLocalidad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite obtener una lista de los números postales que sean iguales o contengan en alguna
+			de sus partes el número solicitado (pe: Si se solicita el número 12 y en la vía existen los
+			números 12 y 12-BIS, se devolverán los dos) de aquellas vías de una entidad singular
+			obtenidas mediante una comparación de igualdad tanto con el nombre de la entidad como
+			con el de la vía.
+			Además se tienen en cuenta otras posibles acepciones (no oficiales) en la denominación de
+			la entidad singular (también por comparación de igualdad).
+			Si se introduce como número postal la cadena vacía se obtendrá la lista completa.</wsdl:documentation>
+      <wsdl:input message="tns:PostalesNombreLocalidadSoapIn" />
+      <wsdl:output message="tns:PostalesNombreLocalidadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostalesViaNombreCasa">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite obtener una lista de los números postales de la vía
+              cuyo nombre de casa cumpla el patrón proporcionado.</wsdl:documentation>
+      <wsdl:input message="tns:PostalesViaNombreCasaSoapIn" />
+      <wsdl:output message="tns:PostalesViaNombreCasaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Via">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite obtener una vía dado su código.</wsdl:documentation>
+      <wsdl:input message="tns:ViaSoapIn" />
+      <wsdl:output message="tns:ViaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViasEntidadSingular">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite obtener una lista de vías de una entidad singular que cumplan un determinado
+			patrón aplicable al nombre de la vía. Si se introduce como patrón la cadena vacía se
+			obtendrá la lista completa.</wsdl:documentation>
+      <wsdl:input message="tns:ViasEntidadSingularSoapIn" />
+      <wsdl:output message="tns:ViasEntidadSingularSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViasLocalidad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite obtener una lista de vías de una entidad singular especificada
+			mediante su denominación que cumplan un determinado patrón aplicable al nombre de la vía.
+			Si se introduce como patrón la cadena vacía se obtendrá la lista completa.</wsdl:documentation>
+      <wsdl:input message="tns:ViasLocalidadSoapIn" />
+      <wsdl:output message="tns:ViasLocalidadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViasMunicipios">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite obtener una lista de vías de un municipio que cumplan un determinado patrón
+			aplicable al nombre de la vía. Si se introduce como patrón la cadena vacía se obtendrá la
+			lista completa.</wsdl:documentation>
+      <wsdl:input message="tns:ViasMunicipiosSoapIn" />
+      <wsdl:output message="tns:ViasMunicipiosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViasNombreViaEntSingular">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite obtener una lista de vías (normalmente una) de una entidad singular mediante una
+			comparación de igualdad con el nombre de la vía. En este caso la entidad singular queda
+			determinada mediante códigos.</wsdl:documentation>
+      <wsdl:input message="tns:ViasNombreViaEntSingularSoapIn" />
+      <wsdl:output message="tns:ViasNombreViaEntSingularSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViasNombreViaLocalidad">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permite obtener una lista de vías (normalmente una) de una entidad singular mediante una
+			comparación de igualdad tanto con el nombre de la entidad como con el de la vía. Además
+			se tienen en cuenta otras posibles acepciones (no oficiales) en la denominación de la entidad
+			singular (también por comparación de igualdad).</wsdl:documentation>
+      <wsdl:input message="tns:ViasNombreViaLocalidadSoapIn" />
+      <wsdl:output message="tns:ViasNombreViaLocalidadSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AlfaWSSoap" type="tns:AlfaWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="EntidadesSingulares">
+      <soap:operation soapAction="http://www.tracasa.es/Schemas/GDP/EntidadesSingulares" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EntidadesSingularesMuni">
+      <soap:operation soapAction="http://www.tracasa.es/Schemas/GDP/EntidadesSingularesMuni" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Municipios">
+      <soap:operation soapAction="http://www.tracasa.es/Schemas/GDP/Municipios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Postal">
+      <soap:operation soapAction="http://www.tracasa.es/Schemas/GDP/Postal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostalCodPortal">
+      <soap:operation soapAction="http://www.tracasa.es/Schemas/GDP/PostalCodPortal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Postales">
+      <soap:operation soapAction="http://www.tracasa.es/Schemas/GDP/Postales" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostalesEntidadNombreCasa">
+      <soap:operation soapAction="http://www.tracasa.es/Schemas/GDP/PostalesEntidadNombreCasa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostalesNombreEntidadSingular">
+      <soap:operation soapAction="http://www.tracasa.es/Schemas/GDP/PostalesNombreEntidadSingular" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostalesNombreLocalidad">
+      <soap:operation soapAction="http://www.tracasa.es/Schemas/GDP/PostalesNombreLocalidad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostalesViaNombreCasa">
+      <soap:operation soapAction="http://www.tracasa.es/Schemas/GDP/PostalesViaNombreCasa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Via">
+      <soap:operation soapAction="http://www.tracasa.es/Schemas/GDP/Via" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViasEntidadSingular">
+      <soap:operation soapAction="http://www.tracasa.es/Schemas/GDP/ViasEntidadSingular" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViasLocalidad">
+      <soap:operation soapAction="http://www.tracasa.es/Schemas/GDP/ViasLocalidad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViasMunicipios">
+      <soap:operation soapAction="http://www.tracasa.es/Schemas/GDP/ViasMunicipios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViasNombreViaEntSingular">
+      <soap:operation soapAction="http://www.tracasa.es/Schemas/GDP/ViasNombreViaEntSingular" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViasNombreViaLocalidad">
+      <soap:operation soapAction="http://www.tracasa.es/Schemas/GDP/ViasNombreViaLocalidad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AlfaWSSoap12" type="tns:AlfaWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="EntidadesSingulares">
+      <soap12:operation soapAction="http://www.tracasa.es/Schemas/GDP/EntidadesSingulares" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EntidadesSingularesMuni">
+      <soap12:operation soapAction="http://www.tracasa.es/Schemas/GDP/EntidadesSingularesMuni" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Municipios">
+      <soap12:operation soapAction="http://www.tracasa.es/Schemas/GDP/Municipios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Postal">
+      <soap12:operation soapAction="http://www.tracasa.es/Schemas/GDP/Postal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostalCodPortal">
+      <soap12:operation soapAction="http://www.tracasa.es/Schemas/GDP/PostalCodPortal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Postales">
+      <soap12:operation soapAction="http://www.tracasa.es/Schemas/GDP/Postales" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostalesEntidadNombreCasa">
+      <soap12:operation soapAction="http://www.tracasa.es/Schemas/GDP/PostalesEntidadNombreCasa" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostalesNombreEntidadSingular">
+      <soap12:operation soapAction="http://www.tracasa.es/Schemas/GDP/PostalesNombreEntidadSingular" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostalesNombreLocalidad">
+      <soap12:operation soapAction="http://www.tracasa.es/Schemas/GDP/PostalesNombreLocalidad" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostalesViaNombreCasa">
+      <soap12:operation soapAction="http://www.tracasa.es/Schemas/GDP/PostalesViaNombreCasa" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Via">
+      <soap12:operation soapAction="http://www.tracasa.es/Schemas/GDP/Via" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViasEntidadSingular">
+      <soap12:operation soapAction="http://www.tracasa.es/Schemas/GDP/ViasEntidadSingular" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViasLocalidad">
+      <soap12:operation soapAction="http://www.tracasa.es/Schemas/GDP/ViasLocalidad" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViasMunicipios">
+      <soap12:operation soapAction="http://www.tracasa.es/Schemas/GDP/ViasMunicipios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViasNombreViaEntSingular">
+      <soap12:operation soapAction="http://www.tracasa.es/Schemas/GDP/ViasNombreViaEntSingular" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViasNombreViaLocalidad">
+      <soap12:operation soapAction="http://www.tracasa.es/Schemas/GDP/ViasNombreViaLocalidad" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AlfaWS">
+    <wsdl:port name="AlfaWSSoap" binding="tns:AlfaWSSoap">
+      <soap:address location="https://intranet02.webtracasa.local/GDP2/users/alfaws.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AlfaWSSoap12" binding="tns:AlfaWSSoap12">
+      <soap12:address location="https://intranet02.webtracasa.local/GDP2/users/alfaws.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

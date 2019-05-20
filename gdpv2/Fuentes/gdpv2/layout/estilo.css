@@ -1,0 +1,10 @@
+﻿#mapa {
+            width: 1000px;
+            height: 600px;
+            border: 1px solid #369;
+        }
+
+.instructions {
+            left: 380px;
+        }
+        
